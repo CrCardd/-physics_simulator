@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="613.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.desktopapp.MainController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="257.0" prefWidth="310.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Canvas fx:id="circulo" height="300.0" layoutX="162.0" layoutY="123.0" width="355.0" />
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>
