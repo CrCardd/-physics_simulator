@@ -15,15 +15,17 @@ public class Massa implements Initializable{
     private double velocidadeY;
     private double raio;
     private double diametro;
+    private double aceleracao;
+    // private double tempoQueda;
 
 
 
-    public Massa(double peso, double posicaoX, double posicaoY, double velocidadeX, double velocidadeY, double raio) {
+    public Massa(double peso, double posicaoX, double posicaoY, double raio) {
         this.peso = peso;
         this.posicaoX = posicaoX;
         this.posicaoY = posicaoY;
-        this.velocidadeX = velocidadeX;
-        this.velocidadeY = velocidadeY;
+        this.velocidadeX = 0;
+        this.velocidadeY = 0;
         this.raio = raio;
         this.diametro = raio*2;
     }
@@ -71,4 +73,23 @@ public class Massa implements Initializable{
     public double getDiametro() {
         return this.diametro;
     }
+
+
+    public void exercer(double height){
+        
+        System.err.println(this.velocidadeY);
+
+        
+        this.velocidadeY = this.velocidadeY + 98 * 0.05;
+        this.posicaoY += this.velocidadeY;
+        
+        if(this.posicaoY > height-this.diametro){
+            this.velocidadeY *= -0.9;
+            this.posicaoY = height - this.diametro;
+        }
+        
+
+    }
+
+
 }
