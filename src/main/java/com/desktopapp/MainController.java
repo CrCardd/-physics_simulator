@@ -43,17 +43,16 @@ public class MainController implements Initializable {
         var g = simulador.getGraphicsContext2D();
         Massa massa = new Massa(10,100,100,30);
         Massa massa1 = new Massa(10,300,20,10);
-        
+        Mola mola = new  Mola(10, 100, massa, massa1);
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 g.clearRect(0, 0, simulador.getWidth(), simulador.getHeight());
                 
-                g.fillOval(massa.getPosicaoX(), massa.getPosicaoY(), massa.getDiametro(), massa.getDiametro());
-                g.fillOval(massa1.getPosicaoX(), massa1.getPosicaoY(), massa1.getDiametro(), massa1.getDiametro());
-                massa.exercer(simulador.getHeight());
-                massa1.exercer(simulador.getHeight());
-                                
+                massa.exercer(simulador);
+                massa1.exercer(simulador);
+                mola.exercer(simulador);
+                
                 box.requestLayout();
             }
         }, 50, 50);

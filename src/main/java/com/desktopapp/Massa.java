@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.shape.Circle;
 
 public class Massa implements Initializable{
@@ -15,8 +16,6 @@ public class Massa implements Initializable{
     private double velocidadeY;
     private double raio;
     private double diametro;
-    private double aceleracao;
-    // private double tempoQueda;
 
 
 
@@ -24,7 +23,7 @@ public class Massa implements Initializable{
         this.peso = peso;
         this.posicaoX = posicaoX;
         this.posicaoY = posicaoY;
-        this.velocidadeX = 0;
+        this.velocidadeX = 10;
         this.velocidadeY = 0;
         this.raio = raio;
         this.diametro = raio*2;
@@ -75,20 +74,32 @@ public class Massa implements Initializable{
     }
 
 
-    public void exercer(double height){
+    public void exercer(Canvas simulador){
         
-        System.err.println(this.velocidadeY);
+        double height = simulador.getHeight(), width = simulador.getWidth();
 
-        
         this.velocidadeY = this.velocidadeY + 98 * 0.05;
         this.posicaoY += this.velocidadeY;
         
-        if(this.posicaoY > height-this.diametro){
+        // this.velocidadeX = this.velocidadeX;
+        this.posicaoX += this.velocidadeX;
+        
+        if (this.posicaoY > height-this.diametro){
             this.velocidadeY *= -0.9;
             this.posicaoY = height - this.diametro;
         }
-        
 
+        if(this.posicaoX >= width - this.diametro){
+            this.velocidadeX *= -1;
+            this.posicaoX = width - this.diametro;
+        }
+        else if(this.posicaoX <- 0){
+            this.velocidadeX *= -1;
+            this.posicaoX = 0;
+        }
+        
+        
+        simulador.getGraphicsContext2D().fillOval(this.posicaoX, this.posicaoY, this.diametro, this.diametro);
     }
 
 
