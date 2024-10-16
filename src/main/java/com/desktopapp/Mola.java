@@ -27,15 +27,30 @@ public class Mola {
         
 
 
-        double distancia = Math.sqrt(Math.pow(Math.abs(massa1X - massa2X),2) + Math.pow(Math.abs(massa1Y - massa2Y), 2));
+        double distancia = Math.sqrt(Math.pow(massa1X - massa2X,2) + Math.pow(massa1Y - massa2Y, 2));
+        double distanciaX = massa1X - massa2X;
+        double distanciaY = massa1Y - massa2Y;
 
-        double deformacacao = this.comprimento - distancia;
-        
+        double deformacao = this.comprimento - distancia;
+
+
+        double forca = resistencia * deformacao;
+
+        // Direção da força
+        double forcaX = forca * ((distanciaX) / distancia);
+        double forcaY = forca * ((distanciaY) / distancia);
+
+        // Atualizando a aceleração das massas
+        massa1.setVelocidadeX(forcaX / massa1.getPeso() + massa1.getVelocidadeX());
+        massa1.setVelocidadeY((forcaY/massa1.getPeso()) + massa1.getVelocidadeY());
+
+        massa2.setVelocidadeX(-forcaX / massa2.getPeso() + massa2.getVelocidadeX());
+        massa2.setVelocidadeY((forcaY/massa2.getPeso()) + massa2.getVelocidadeY());
 
 
         simulador.getGraphicsContext2D().strokeLine(
-            massa1.getPosicaoX() + massa1.getRaio(), massa1.getPosicaoY() + massa1.getRaio(),
-            massa2.getPosicaoX() + massa2.getRaio(), massa2.getPosicaoY() + massa2.getRaio()
+            massa1X, massa1Y,
+            massa2X, massa2Y
         );
     }
 
